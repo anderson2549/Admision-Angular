@@ -1,0 +1,60 @@
+
+
+<div class="row text-left">
+    <div class="col">
+        <button routerLink="/clientes" class="btn btn-danger">
+            <i class="fa fa-arrow-left"></i>
+        </button>
+    </div>
+    
+</div>
+
+<hr>
+<h1>Cliente <small>{{cliente.Nombres?" - "+cliente.Nombres:''}}</small></h1>
+<div class="row animated fadeIn faster">
+    <div class="col">
+        <form (ngSubmit)="guardar(f)" #f="ngForm">
+            <div class="form-group">
+                <label>Id Cliente</label>
+                <input [(ngModel)]="cliente.CodClient" name="CodClient" type="text" class="form-control" placeholder="Id Cliente" disabled="disable">
+                <small  class="form-text text-muted">Campo Autogenerado</small>
+            </div>
+            <div class="form-group">
+                <label>Usuario</label>
+                <input [disabled]="detalle" type="text" [(ngModel)]="cliente.Usuario" name="Usuario" class="form-control" placeholder="Usuario" required>
+            </div>
+            <div class="form-group">
+                <label>Nombre completo</label>
+                <input [disabled]="detalle" type="text" [(ngModel)]="cliente.Nombres" name="Nombres" class="form-control" placeholder="Nombre completo" required>
+            </div>
+            <div class="form-group">
+                <label>Cargo</label>
+                <input [disabled]="detalle" type="text" [(ngModel)]="cliente.Cargo" name="Cargo" class="form-control" placeholder="Cargo" required>
+            </div>
+            <div class="form-group">
+                <label>Telefono</label>
+                <input [disabled]="detalle" type="text" [(ngModel)]="cliente.Telefono" name="Telefono" class="form-control" placeholder="Telefono" required>
+            </div>
+            <div class="form-group">
+                <label>Correo Electrónico</label>
+                <input [disabled]="detalle" type="email" [(ngModel)]="cliente.Correo" name="Correo" class="form-control" placeholder="Correo Electrónico" required>
+            </div>
+            <div class="form-group">
+                <label for="CodTipoClienteFK">Tipo de cliente</label>
+                <select [disabled]="detalle"  [(ngModel)]="cliente.CodTipoClienteFK" name="CodTipoClienteFK"  class="form-control" id="CodTipoClienteFK" required="">
+                    <option value="1">Contacto Comercial</option>
+                    <option value="2">Pago de factura</option>
+                    <option value="3">Representante legal</option>
+                    <option value="4">Retiro de mercadería</option>
+                </select>
+            </div>
+            <hr>
+            <div class="form-group text-center">
+                <button [disabled]="detalle" class="btn btn-primary">
+                    <i class="fa fa-save"></i>
+                    Guardar
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

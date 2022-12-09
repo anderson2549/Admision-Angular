@@ -1,0 +1,62 @@
+<h1>Listado de clientes</h1>
+
+<div class="row">
+    <div class="col text-right">
+        <button routerLink="/cliente/nuevo" class="btn btn-primary">
+            <i class="fa fa-plus"></i>
+            Agregar
+        </button>
+    </div>
+</div>
+<hr>
+<div class="row">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Usuario</th>
+                <th scope="col">Nombre completo</th>
+                <th scope="col">Cargo</th>
+                <th scope="col">Correo Electrónico</th>
+                <th scope="col">Tools</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let cliente of clientes;let i = index">
+                <th>{{cliente.CodClient}}</th>
+                <td>{{cliente.Usuario}}</td>
+                <td>{{cliente.Nombres}}</td>
+                <td>{{cliente.Cargo}}</td>
+                <td>{{cliente.Correo}}</td>
+                <button class="btn btn-info mr-1"
+                        [routerLink]="['/cliente','view-'+cliente.CodClient]">
+                    <i class="fa fa-eye"></i>
+                </button>
+                <button class="btn btn-info mr-1"
+                        [routerLink]="['/cliente',cliente.CodClient]">
+                    <i class="fa fa-pen"></i>
+                </button>
+                <button (click)="borrarCliente(cliente)" class="btn btn-info mr-1">
+                    <i class="fa fa-trash"></i>
+                </button>
+            </tr>
+
+        </tbody>
+    </table>
+
+
+</div>
+<div *ngIf="clientes.length==0 && !cargando" class="alert alert-warning text-center mt-3">
+    <h4 class="alert-heading">No hay registros</h4>
+    <p>
+        <i class="fa fa-exclamation fa-2x"></i>
+    </p>
+</div>
+
+<div *ngIf="cargando"  class="alert alert-info text-center mt-3">
+    <h4 class="alert-heading">Cargando</h4>
+    <p>
+        <i class="fa fa-sync-alt fa-spin fa-2x"></i>
+    </p>
+    <p class="mb-0">Espere por favor</p>
+</div>
